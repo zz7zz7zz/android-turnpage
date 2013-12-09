@@ -15,11 +15,7 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
 
-import com.open.turnpage.BlackSquareFadeAway;
-import com.open.turnpage.BlackSquareZoomIn;
 import com.open.turnpage.ITurnPage;
-import com.open.turnpage.ShutterDown2Up;
-import com.open.turnpage.ShutterUp2Down;
 
 public class TurnPageView extends SurfaceView{
 	
