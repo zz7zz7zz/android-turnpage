@@ -15,15 +15,16 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
 
+import com.open.turnpage.BlackSquareFadeAway;
+import com.open.turnpage.BlackSquareZoomIn;
 import com.open.turnpage.ITurnPage;
 import com.open.turnpage.ShutterDown2Up;
-import com.open.turnpage.ShutterLeft2Right;
-import com.open.turnpage.ShutterRight2Left;
 import com.open.turnpage.ShutterUp2Down;
 
 public class TurnPageView extends SurfaceView{
 	
 	private GestureDetector mGestureDetector; // 手势
+	private IFillingEvent mFillingListener;
 	private ITurnPage mTrunPageAnimation;
 	private boolean isPause=true;
 	private DrawThread drawThread;
@@ -65,7 +66,12 @@ public class TurnPageView extends SurfaceView{
 		mGestureDetector=new GestureDetector(mSimpleOnGestureListener);
 	}
 	
-
+	public void setOnFillingListener(IFillingEvent mFillingListener)
+	{
+		this.mFillingListener=mFillingListener;
+	}
+	
+	
 	public void setTurnPageStyle(ITurnPage mTrunPageAnimation)
 	{
 		this.mTrunPageAnimation=mTrunPageAnimation;
@@ -125,13 +131,20 @@ public class TurnPageView extends SurfaceView{
 			        {  
 			            Log.v("SimpleOnGestureListener", "Fling left");  
 			            
-			            setTurnPageStyle(new ShutterRight2Left());
+			            if(null!=mFillingListener)
+			            {
+			            	mFillingListener.onFlingLeft();
+			            }
 			            notifyTurnPage();
 			        } 
 			        else if (e2.getX() - e1.getX() > MIN_DISTANCE&& Math.abs(velocityX) > MIN_VELOCITY) 
 			        {  
 			            Log.v("SimpleOnGestureListener", "Fling right");  
-			            setTurnPageStyle(new ShutterLeft2Right());
+			            
+			            if(null!=mFillingListener)
+			            {
+			            	mFillingListener.onFlingRight();
+			            }
 			            notifyTurnPage();
 			        }  
 			 	}
@@ -140,14 +153,19 @@ public class TurnPageView extends SurfaceView{
 			        if (e1.getY() - e2.getY() > MIN_DISTANCE&& Math.abs(velocityX) > MIN_VELOCITY) 
 			        {  
 			            Log.v("SimpleOnGestureListener", "Fling up");  
-			            
-			            setTurnPageStyle(new ShutterDown2Up());
+			            if(null!=mFillingListener)
+			            {
+			            	mFillingListener.onFlingUp();
+			            }
 			            notifyTurnPage();
 			        } 
 			        else if (e2.getY() - e1.getY() > MIN_DISTANCE&& Math.abs(velocityX) > MIN_VELOCITY) 
 			        {  
 			            Log.v("SimpleOnGestureListener", "Fling down");  
-			            setTurnPageStyle(new ShutterUp2Down());
+			            if(null!=mFillingListener)
+			            {
+			            	mFillingListener.onFlingDown();
+			            }
 			            notifyTurnPage();
 			        }  
 			 	}

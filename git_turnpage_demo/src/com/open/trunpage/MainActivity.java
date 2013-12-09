@@ -1,36 +1,42 @@
 package com.open.trunpage;
 
-import com.open.turnpage.ShutterLeft2Right;
-import com.open.turnpage.widget.TurnPageView;
-
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
 
 public class MainActivity extends Activity {
 
-	private TurnPageView mTurnPageView=null;
-	private Bitmap []mBitmaps;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mTurnPageView=new TurnPageView(getApplicationContext());
-		mBitmaps=new Bitmap[1];
-		int length=1;
-		for(int i=0;i<length;i++)
-		{
-			mBitmaps[i]=((BitmapDrawable)(getResources().getDrawable(R.drawable.img_1+i))).getBitmap();
-		}
-		setContentView(mTurnPageView);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);	
+		setContentView(R.layout.mainui);
+		
+		findViewById(R.id.btn1).setOnClickListener(listener);
+		findViewById(R.id.btn2).setOnClickListener(listener);
 	}
 
-	@Override
-	protected void onResume() {
-		mTurnPageView.setTurnPageStyle(new ShutterLeft2Right());
-		mTurnPageView.setBitmaps(mBitmaps);
-		super.onResume();
-	}
-	
+	private View.OnClickListener listener=new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			Intent mIntent=new Intent(getBaseContext(), TuruPageActivity.class);
+			int index=1;
+			switch(v.getId())
+			{
+				case R.id.btn1:
+						index=1;
+						break;
+						
+				case R.id.btn2:
+					index=2;
+					break;
+			}
+			mIntent.putExtra("index", index);
+			startActivity(mIntent);
+		}
+	};
 }
