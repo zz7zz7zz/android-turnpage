@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
 		
 		findViewById(R.id.btn1).setOnClickListener(listener);
 		findViewById(R.id.btn2).setOnClickListener(listener);
+		findViewById(R.id.btn3).setOnClickListener(listener);
 	}
 
 	private View.OnClickListener listener=new View.OnClickListener() {
@@ -33,6 +34,10 @@ public class MainActivity extends Activity {
 						
 				case R.id.btn2:
 					index=2;
+					break;
+					
+				case R.id.btn3:
+					index=3;
 					break;
 			}
 			mIntent.putExtra("index", index);

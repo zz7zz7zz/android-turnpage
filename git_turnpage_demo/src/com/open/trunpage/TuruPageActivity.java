@@ -12,6 +12,8 @@ import com.open.turnpage.ShutterDown2Up;
 import com.open.turnpage.ShutterLeft2Right;
 import com.open.turnpage.ShutterRight2Left;
 import com.open.turnpage.ShutterUp2Down;
+import com.open.turnpage.TranslateLeft;
+import com.open.turnpage.TranslateRight;
 import com.open.turnpage.widget.IFillingEvent;
 import com.open.turnpage.widget.TurnPageView;
 
@@ -47,7 +49,10 @@ public class TuruPageActivity extends Activity {
 		{
 			trunPage2();
 		}
-		
+		else if(index==3)
+		{
+			trunPage3();
+		}
 		
 		super.onResume();
 	}
@@ -119,6 +124,41 @@ public class TuruPageActivity extends Activity {
 		
 		mTurnPageView.setOnFillingListener(mFillingListener);
 		mTurnPageView.setTurnPageStyle(new BlackSquareZoomIn());
+		mTurnPageView.setBitmaps(mBitmaps);
+	}
+	
+	private void trunPage3()
+	{
+		IFillingEvent mFillingListener=new IFillingEvent()
+		{
+
+			@Override
+			public void onFlingLeft() {
+				mTurnPageView.setTurnPageStyle(new TranslateLeft());
+				
+			}
+
+			@Override
+			public void onFlingRight() {
+				mTurnPageView.setTurnPageStyle(new TranslateRight());
+				
+			}
+
+			@Override
+			public void onFlingUp() {
+				mTurnPageView.setTurnPageStyle(new TranslateRight());
+				
+			}
+
+			@Override
+			public void onFlingDown() {
+				mTurnPageView.setTurnPageStyle(new TranslateLeft());
+			}
+			
+		};
+		
+		mTurnPageView.setOnFillingListener(mFillingListener);
+		mTurnPageView.setTurnPageStyle(new TranslateLeft());
 		mTurnPageView.setBitmaps(mBitmaps);
 	}
 	
