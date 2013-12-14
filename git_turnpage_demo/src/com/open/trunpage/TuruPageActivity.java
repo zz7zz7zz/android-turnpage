@@ -2,7 +2,6 @@ package com.open.trunpage;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.Window;
 
@@ -14,6 +13,7 @@ import com.open.turnpage.ShutterRight2Left;
 import com.open.turnpage.ShutterUp2Down;
 import com.open.turnpage.TranslateLeft;
 import com.open.turnpage.TranslateRight;
+import com.open.turnpage.util.BitmapUtil;
 import com.open.turnpage.widget.IFillingEvent;
 import com.open.turnpage.widget.TurnPageView;
 
@@ -28,11 +28,12 @@ public class TuruPageActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);	
 		
 		mTurnPageView=new TurnPageView(getApplicationContext());
-		mBitmaps=new Bitmap[1];
-		int length=1;
+		int length=2;
+		mBitmaps=new Bitmap[length];
 		for(int i=0;i<length;i++)
 		{
-			mBitmaps[i]=((BitmapDrawable)(getResources().getDrawable(R.drawable.img_1+i))).getBitmap();
+			mBitmaps[i]=BitmapUtil.getFitBitmapFromResource(getResources(), R.drawable.img_1+i, 
+					SysUtil.getScreenWidth(getApplicationContext()), SysUtil.getScreenHeight(getApplicationContext())-SysUtil.getStatusBarHeight(getApplicationContext()));
 		}
 		setContentView(mTurnPageView);
 	}
@@ -57,6 +58,44 @@ public class TuruPageActivity extends Activity {
 		super.onResume();
 	}
 	
+	@Override
+	protected void onDestroy() {
+		for(int i=0;i<mBitmaps.length;i++)
+		{
+			if(null!=mBitmaps[i]&&!mBitmaps[i].isRecycled())
+			{
+				mBitmaps[i].recycle();
+			}
+		}
+		super.onDestroy();
+	}
+
+
+
+
+	int curBitmapIndex=0;
+	private void prePage()
+	{
+		if(curBitmapIndex>0)
+		{
+			curBitmapIndex--;
+		}
+		else
+		{
+			curBitmapIndex=0;
+		}
+		mTurnPageView.setBitmaps(new Bitmap[]{mBitmaps[curBitmapIndex]});
+	}
+	
+	private void nextPage()
+	{
+		if(curBitmapIndex<mBitmaps.length-1)
+		{
+			curBitmapIndex++;
+		}
+		mTurnPageView.setBitmaps(new Bitmap[]{mBitmaps[curBitmapIndex]});
+	}
+	
 	private void trunPage1()
 	{
 		IFillingEvent mFillingListener=new IFillingEvent()
@@ -64,24 +103,28 @@ public class TuruPageActivity extends Activity {
 
 			@Override
 			public void onFlingLeft() {
+				nextPage();
 				mTurnPageView.setTurnPageStyle(new ShutterRight2Left());
 				
 			}
 
 			@Override
 			public void onFlingRight() {
+				prePage();
 				mTurnPageView.setTurnPageStyle(new ShutterLeft2Right());
 				
 			}
 
 			@Override
 			public void onFlingUp() {
+				nextPage();
 				mTurnPageView.setTurnPageStyle(new ShutterDown2Up());
 				
 			}
 
 			@Override
 			public void onFlingDown() {
+				prePage();
 				mTurnPageView.setTurnPageStyle(new ShutterUp2Down());
 			}
 			
@@ -89,7 +132,7 @@ public class TuruPageActivity extends Activity {
 		
 		mTurnPageView.setOnFillingListener(mFillingListener);
 		mTurnPageView.setTurnPageStyle(new ShutterLeft2Right());
-		mTurnPageView.setBitmaps(mBitmaps);
+		mTurnPageView.setBitmaps(new Bitmap[]{mBitmaps[curBitmapIndex]});
 	}
 	
 	private void trunPage2()
@@ -99,24 +142,28 @@ public class TuruPageActivity extends Activity {
 
 			@Override
 			public void onFlingLeft() {
+				nextPage();
 				mTurnPageView.setTurnPageStyle(new BlackSquareZoomIn());
 				
 			}
 
 			@Override
 			public void onFlingRight() {
+				prePage();
 				mTurnPageView.setTurnPageStyle(new BlackSquareFadeAway());
 				
 			}
 
 			@Override
 			public void onFlingUp() {
+				nextPage();
 				mTurnPageView.setTurnPageStyle(new BlackSquareZoomIn());
 				
 			}
 
 			@Override
 			public void onFlingDown() {
+				prePage();
 				mTurnPageView.setTurnPageStyle(new BlackSquareFadeAway());
 			}
 			
@@ -124,7 +171,7 @@ public class TuruPageActivity extends Activity {
 		
 		mTurnPageView.setOnFillingListener(mFillingListener);
 		mTurnPageView.setTurnPageStyle(new BlackSquareZoomIn());
-		mTurnPageView.setBitmaps(mBitmaps);
+		mTurnPageView.setBitmaps(new Bitmap[]{mBitmaps[curBitmapIndex]});
 	}
 	
 	private void trunPage3()
@@ -134,24 +181,28 @@ public class TuruPageActivity extends Activity {
 
 			@Override
 			public void onFlingLeft() {
+				nextPage();
 				mTurnPageView.setTurnPageStyle(new TranslateLeft());
 				
 			}
 
 			@Override
 			public void onFlingRight() {
+				prePage();
 				mTurnPageView.setTurnPageStyle(new TranslateRight());
 				
 			}
 
 			@Override
 			public void onFlingUp() {
+				nextPage();
 				mTurnPageView.setTurnPageStyle(new TranslateRight());
 				
 			}
 
 			@Override
 			public void onFlingDown() {
+				prePage();
 				mTurnPageView.setTurnPageStyle(new TranslateLeft());
 			}
 			
@@ -159,7 +210,7 @@ public class TuruPageActivity extends Activity {
 		
 		mTurnPageView.setOnFillingListener(mFillingListener);
 		mTurnPageView.setTurnPageStyle(new TranslateLeft());
-		mTurnPageView.setBitmaps(mBitmaps);
+		mTurnPageView.setBitmaps(new Bitmap[]{mBitmaps[curBitmapIndex]});
 	}
 	
 }

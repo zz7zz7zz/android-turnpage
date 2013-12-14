@@ -41,6 +41,7 @@ public class ShutterLeft2Right implements ITurnPage {
 		long runMills=0;
 		
 		Rect src=new Rect();
+		Rect dst=new Rect();
 		Canvas canvas=null;
 		boolean isRunning=true;
 		while(isRunning)
@@ -62,7 +63,8 @@ public class ShutterLeft2Right implements ITurnPage {
 					for(int j=0;j<leafNum;j++)
 					{
 						src.set(j*perWidth, 0, (int)(j*perWidth+((float)runMills/(float)duration)*perWidth), maxHeight);
-						canvas.drawBitmap(bitmap[0], src, src, null);
+						dst.set(j*perWidth, 0, (int)(j*perWidth+((float)runMills/(float)duration)*perWidth), maxHeight);
+						canvas.drawBitmap(bitmap[0], src, dst, null);
 					}
 					canvas.restore();
 					

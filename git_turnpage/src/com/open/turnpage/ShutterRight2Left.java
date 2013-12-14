@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Rect;
-import android.util.Log;
 import android.view.SurfaceHolder;
 
 /**
@@ -42,7 +41,6 @@ public class ShutterRight2Left implements ITurnPage {
 		boolean isRunning=true;
 		while(isRunning)
 		{
-			Log.v("isRunning", "isRunning:"+isRunning);
 			isRunning=((runMills=(System.currentTimeMillis()-start))<duration);
 			if(!isRunning)
 			{
