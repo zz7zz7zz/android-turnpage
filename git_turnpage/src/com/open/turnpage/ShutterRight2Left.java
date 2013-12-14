@@ -9,6 +9,11 @@ import android.graphics.Rect;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
+/**
+ * 
+ * @author yanglonghui
+ *
+ */
 public class ShutterRight2Left implements ITurnPage {
 
 	private int duration=350;//动画持续时间
@@ -30,6 +35,7 @@ public class ShutterRight2Left implements ITurnPage {
 		long start=System.currentTimeMillis();
 		long runMills=0;
 		
+		Rect src=new Rect();
 		Canvas canvas=null;
 		boolean isRunning=true;
 		while(isRunning)
@@ -49,7 +55,7 @@ public class ShutterRight2Left implements ITurnPage {
 					
 					for(int j=0;j<leafNum;j++)
 					{
-						Rect src=new Rect((int)((j+1)*perWidth-((float)runMills/(float)duration)*perWidth), 0, (j+1)*perWidth, maxHeight);
+						src.set((int)((j+1)*perWidth-((float)runMills/(float)duration)*perWidth), 0, (j+1)*perWidth, maxHeight);
 						canvas.drawBitmap(bitmap[0], src, src, null);
 					}
 			} catch (Exception e) {

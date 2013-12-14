@@ -2,7 +2,7 @@ package com.open.turnpage.widget;
 
 /**
  * 左右上下滑动的四个事件
- * @author Administrator
+ * @author yanglonghui
  *
  */
 public interface IFillingEvent {

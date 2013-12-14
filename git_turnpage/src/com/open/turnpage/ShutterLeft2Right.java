@@ -8,6 +8,11 @@ import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Rect;
 import android.view.SurfaceHolder;
 
+/**
+ * 
+ * @author yanglonghui
+ *
+ */
 public class ShutterLeft2Right implements ITurnPage {
 
 	private int duration=350;//动画持续时间
@@ -33,6 +38,7 @@ public class ShutterLeft2Right implements ITurnPage {
 		long start=System.currentTimeMillis();
 		long runMills=0;
 		
+		Rect src=new Rect();
 		Canvas canvas=null;
 		boolean isRunning=true;
 		while(isRunning)
@@ -51,7 +57,7 @@ public class ShutterLeft2Right implements ITurnPage {
 					
 					for(int j=0;j<leafNum;j++)
 					{
-						Rect src=new Rect(j*perWidth, 0, (int)(j*perWidth+((float)runMills/(float)duration)*perWidth), maxHeight);
+						src.set(j*perWidth, 0, (int)(j*perWidth+((float)runMills/(float)duration)*perWidth), maxHeight);
 						canvas.drawBitmap(bitmap[0], src, src, null);
 					}
 			} catch (Exception e) {

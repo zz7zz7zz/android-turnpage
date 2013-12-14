@@ -5,7 +5,7 @@ import android.view.SurfaceHolder;
 
 /**
  * 翻页效果的接口
- * @author Administrator
+ * @author yanglonghui
  *
  */
 public interface ITurnPage {

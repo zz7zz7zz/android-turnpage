@@ -8,6 +8,11 @@ import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Rect;
 import android.view.SurfaceHolder;
 
+/**
+ * 
+ * @author yanglonghui
+ *
+ */
 public class BlackSquareZoomIn implements ITurnPage {
 
 	private int duration=850;//动画持续时间

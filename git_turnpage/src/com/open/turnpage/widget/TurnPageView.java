@@ -17,6 +17,11 @@ import android.view.View;
 
 import com.open.turnpage.ITurnPage;
 
+/**
+ * 
+ * @author yanglonghui
+ *
+ */
 public class TurnPageView extends SurfaceView{
 	
 	private GestureDetector mGestureDetector; // 手势

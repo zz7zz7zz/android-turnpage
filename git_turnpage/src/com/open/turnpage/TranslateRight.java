@@ -8,6 +8,11 @@ import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Rect;
 import android.view.SurfaceHolder;
 
+/**
+ * 
+ * @author yanglonghui
+ *
+ */
 public class TranslateRight implements ITurnPage {
 
 	private int duration=500;//动画持续时间
@@ -30,6 +35,7 @@ public class TranslateRight implements ITurnPage {
 		long start=System.currentTimeMillis();
 		long runMills=0;
 		
+		Rect src=new Rect();
 		Canvas canvas=null;
 		boolean isRunning=true;
 		while(isRunning)
@@ -47,7 +53,7 @@ public class TranslateRight implements ITurnPage {
 					
 					canvas.save();
 					canvas.translate((int)(maxWidth*((float)runMills/(float)duration)), 0);
-					Rect src=new Rect(0, 0, maxWidth, maxHeight);
+					src.set(0, 0, maxWidth, maxHeight);
 					canvas.drawBitmap(bitmap[0], src, src, null);
 					canvas.restore();
 					
