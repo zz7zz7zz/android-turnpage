@@ -34,6 +34,10 @@ public class TranslateLeft implements ITurnPage {
 		
 		int dx=(maxWidth-bitmap[1].getWidth())/2;
 		int dy=(maxHeight-bitmap[1].getHeight())/2;
+		
+		int dx2=(maxWidth-bitmap[0].getWidth())/2;
+		int dy2=(maxHeight-bitmap[0].getHeight())/2;
+		
 		long start=System.currentTimeMillis();
 		long runMills=0;
 		
@@ -56,7 +60,7 @@ public class TranslateLeft implements ITurnPage {
 					canvas.drawBitmap(bitmap[1], dx, dy, null);
 					
 					canvas.save();
-					canvas.translate(dx, dy);
+					canvas.translate(dx2, dy2);
 					canvas.translate(-(int)(maxWidth*((float)runMills/(float)duration)), 0);
 					src.set(0, 0, maxWidth, maxHeight);
 					canvas.drawBitmap(bitmap[0], src, src, null);
