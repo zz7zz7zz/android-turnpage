@@ -33,6 +33,8 @@ public class BlackSquareZoomIn implements ITurnPage {
 	public void onTurnPageDraw(SurfaceHolder holder, Bitmap[] bitmap,
 			int maxWidth, int maxHeight) {
 		
+		int dx=(maxWidth-bitmap[0].getWidth())/2;
+		int dy=(maxHeight-bitmap[0].getHeight())/2;
 		int perWidth=maxWidth/leafNum;
 		int row=maxHeight/perWidth;
 		int perHeight=maxHeight/row;
@@ -80,17 +82,17 @@ public class BlackSquareZoomIn implements ITurnPage {
 					
 					canvas.setDrawFilter(pdf);
 					canvas.drawColor(Color.BLACK);// 清除画布
-					canvas.drawBitmap(bitmap[0], null, new Rect(0, 0, maxWidth, maxHeight), null);
+					canvas.drawBitmap(bitmap[0], dx, dy, null);
 					
 					for(int i=0;i<array.length;i++)
 					{
 						for(int j=0;j<array[i].length;j++)
 						{
 							drawRect.set(array[i][j]);
-							int dx = (int)(((float)runMills/(float)duration)*drawRect.width()/2);
-							int dy = (int)(((float)runMills/(float)duration)*drawRect.height()/2);
+							int _dx = (int)(((float)runMills/(float)duration)*drawRect.width()/2);
+							int _dy = (int)(((float)runMills/(float)duration)*drawRect.height()/2);
 							
-							drawRect.inset(dx, dy);
+							drawRect.inset(_dx, _dy);
 							canvas.drawRect(drawRect, mRectPaint);
 						}
 					}

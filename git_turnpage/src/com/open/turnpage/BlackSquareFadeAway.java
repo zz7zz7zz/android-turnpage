@@ -33,6 +33,8 @@ public class BlackSquareFadeAway implements ITurnPage {
 	public void onTurnPageDraw(SurfaceHolder holder, Bitmap[] bitmap,
 			int maxWidth, int maxHeight) {
 		
+		int dx=(maxWidth-bitmap[0].getWidth())/2;
+		int dy=(maxHeight-bitmap[0].getHeight())/2;
 		int perWidth=maxWidth/leafNum;
 		int row=maxHeight/perWidth;
 		int perHeight=maxHeight/row;
@@ -83,29 +85,25 @@ public class BlackSquareFadeAway implements ITurnPage {
 					
 					if(!isRunning)
 					{
-//						float scaleX=(float)maxWidth/(float)bitmap[0].getWidth();
-//						float scaleY=(float)maxHeight/(float)bitmap[0].getHeight();
-//						float scale=Math.max(scaleX, scaleY);
-//						int width=(int) ((float)bitmap[0].getWidth()*scale);
-//						int height=(int) ((float)bitmap[0].getHeight()*scale);
-//						canvas.drawBitmap(bitmap[0], null, new Rect(0, 0, width, height), null);
-						drawRect.set(0, 0, maxWidth, maxHeight);
-						canvas.drawBitmap(bitmap[0], null, drawRect, null);
+						canvas.drawBitmap(bitmap[0], dx, dy, null);
 					}
 					else
 					{
+						canvas.save();
+						canvas.translate(dx, dy);
 						for(int i=0;i<array.length;i++)
 						{
 							for(int j=0;j<array[i].length;j++)
 							{
 								drawRect.set(array[i][j]);
-								int dx = drawRect.width()/2-(int)(((float)runMills/(float)duration)*drawRect.width()/2);
-								int dy = drawRect.height()/2-(int)(((float)runMills/(float)duration)*drawRect.height()/2);
+								int _dx = drawRect.width()/2-(int)(((float)runMills/(float)duration)*drawRect.width()/2);
+								int _dy = drawRect.height()/2-(int)(((float)runMills/(float)duration)*drawRect.height()/2);
 								
-								drawRect.inset(dx, dy);
+								drawRect.inset(_dx, _dy);
 								canvas.drawBitmap(bitmap[0], drawRect, drawRect, null);
 							}
 						}
+						canvas.restore();
 					}
 			} catch (Exception e) {
 				e.printStackTrace();

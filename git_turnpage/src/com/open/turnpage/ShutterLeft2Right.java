@@ -33,6 +33,8 @@ public class ShutterLeft2Right implements ITurnPage {
 	public void onTurnPageDraw(SurfaceHolder holder, Bitmap[] bitmap,
 			int maxWidth, int maxHeight) {
 		
+		int dx=(maxWidth-bitmap[0].getWidth())/2;
+		int dy=(maxHeight-bitmap[0].getHeight())/2;
 		int perWidth=maxWidth/leafNum;
 		
 		long start=System.currentTimeMillis();
@@ -55,11 +57,16 @@ public class ShutterLeft2Right implements ITurnPage {
 					canvas.setDrawFilter(pdf);
 					canvas.drawColor(Color.BLACK);// 清除画布
 					
+					canvas.save();
+					canvas.translate(dx, dy);
 					for(int j=0;j<leafNum;j++)
 					{
 						src.set(j*perWidth, 0, (int)(j*perWidth+((float)runMills/(float)duration)*perWidth), maxHeight);
 						canvas.drawBitmap(bitmap[0], src, src, null);
 					}
+					canvas.restore();
+					
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally{

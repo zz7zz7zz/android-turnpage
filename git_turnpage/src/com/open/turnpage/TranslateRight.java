@@ -32,6 +32,8 @@ public class TranslateRight implements ITurnPage {
 	public void onTurnPageDraw(SurfaceHolder holder, Bitmap[] bitmap,
 			int maxWidth, int maxHeight) {
 		
+		int dx=(maxWidth-bitmap[0].getWidth())/2;
+		int dy=(maxHeight-bitmap[0].getHeight())/2;
 		long start=System.currentTimeMillis();
 		long runMills=0;
 		
@@ -52,6 +54,7 @@ public class TranslateRight implements ITurnPage {
 					canvas.drawColor(Color.BLACK);// 清除画布
 					
 					canvas.save();
+					canvas.translate(dx, dy);
 					canvas.translate((int)(maxWidth*((float)runMills/(float)duration)), 0);
 					src.set(0, 0, maxWidth, maxHeight);
 					canvas.drawBitmap(bitmap[0], src, src, null);
