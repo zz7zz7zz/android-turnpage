@@ -53,11 +53,13 @@ public class TranslateRight implements ITurnPage {
 					canvas.setDrawFilter(pdf);
 					canvas.drawColor(Color.BLACK);// 清除画布
 					
+					canvas.drawBitmap(bitmap[0], dx, dy, null);
+					
 					canvas.save();
 					canvas.translate(dx, dy);
 					canvas.translate((int)(maxWidth*((float)runMills/(float)duration)), 0);
 					src.set(0, 0, maxWidth, maxHeight);
-					canvas.drawBitmap(bitmap[0], src, src, null);
+					canvas.drawBitmap(bitmap[1], src, src, null);
 					canvas.restore();
 					
 			} catch (Exception e) {

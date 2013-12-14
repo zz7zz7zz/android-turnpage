@@ -181,28 +181,28 @@ public class TuruPageActivity extends Activity {
 
 			@Override
 			public void onFlingLeft() {
-				nextPage();
+				nextPage3();
 				mTurnPageView.setTurnPageStyle(new TranslateLeft());
 				
 			}
 
 			@Override
 			public void onFlingRight() {
-				prePage();
+				prePage3();
 				mTurnPageView.setTurnPageStyle(new TranslateRight());
 				
 			}
 
 			@Override
 			public void onFlingUp() {
-				nextPage();
+				nextPage3();
 				mTurnPageView.setTurnPageStyle(new TranslateRight());
 				
 			}
 
 			@Override
 			public void onFlingDown() {
-				prePage();
+				prePage3();
 				mTurnPageView.setTurnPageStyle(new TranslateLeft());
 			}
 			
@@ -210,7 +210,29 @@ public class TuruPageActivity extends Activity {
 		
 		mTurnPageView.setOnFillingListener(mFillingListener);
 		mTurnPageView.setTurnPageStyle(new TranslateLeft());
-		mTurnPageView.setBitmaps(new Bitmap[]{mBitmaps[curBitmapIndex]});
+		mTurnPageView.setBitmaps(new Bitmap[]{mBitmaps[curBitmapIndex],mBitmaps[curBitmapIndex+1]});
+	}
+	
+	private void prePage3()
+	{
+		if(curBitmapIndex>0)
+		{
+			curBitmapIndex--;
+		}
+		else
+		{
+			curBitmapIndex=0;
+		}
+		mTurnPageView.setBitmaps(new Bitmap[]{mBitmaps[curBitmapIndex],mBitmaps[curBitmapIndex+1]});
+	}
+	
+	private void nextPage3()
+	{
+		if(curBitmapIndex<mBitmaps.length-1)
+		{
+			curBitmapIndex++;
+		}
+		mTurnPageView.setBitmaps(new Bitmap[]{mBitmaps[curBitmapIndex-1],mBitmaps[curBitmapIndex]});
 	}
 	
 }

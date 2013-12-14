@@ -32,8 +32,8 @@ public class TranslateLeft implements ITurnPage {
 	public void onTurnPageDraw(SurfaceHolder holder, Bitmap[] bitmap,
 			int maxWidth, int maxHeight) {
 		
-		int dx=(maxWidth-bitmap[0].getWidth())/2;
-		int dy=(maxHeight-bitmap[0].getHeight())/2;
+		int dx=(maxWidth-bitmap[1].getWidth())/2;
+		int dy=(maxHeight-bitmap[1].getHeight())/2;
 		long start=System.currentTimeMillis();
 		long runMills=0;
 		
@@ -52,6 +52,8 @@ public class TranslateLeft implements ITurnPage {
 					canvas=holder.lockCanvas(null);
 					canvas.setDrawFilter(pdf);
 					canvas.drawColor(Color.BLACK);// 清除画布
+					
+					canvas.drawBitmap(bitmap[1], dx, dy, null);
 					
 					canvas.save();
 					canvas.translate(dx, dy);
