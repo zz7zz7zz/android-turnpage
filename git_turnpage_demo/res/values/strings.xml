@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">git_turnpage_demo</string>
+    <string name="app_name">git_turnpage</string>
 	<string name="btn_text_1">百叶窗效果</string>
 	<string name="btn_text_2">小黑块效果</string>
 	<string name="btn_text_3">平移效果</string>
