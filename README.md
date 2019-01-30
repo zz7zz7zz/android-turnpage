@@ -6,8 +6,14 @@ android-turnpage
 ## 二、效果展示 
 
 
-<img width="304" height="484" src="http://img.blog.csdn.net/20131214232900937"/>
-<img width="304" height="484" src="http://img.blog.csdn.net/20131214232930640"/>
-<img width="304" height="484" src="http://img.blog.csdn.net/20131214232954296"/>
-<img width="304" height="484" src="http://img.blog.csdn.net/20131214233022546"/>
+<img width="304" height="484" src="https://github.com/zz7zz7zz/android-turnpage/blob/master/1.jpg"/>
+<img width="304" height="484" src="https://github.com/zz7zz7zz/android-turnpage/blob/master/2.jpg"/>
+<img width="304" height="484" src="https://github.com/zz7zz7zz/android-turnpage/blob/master/3.jpg"/>
+<img width="304" height="484" src="https://github.com/zz7zz7zz/android-turnpage/blob/master/4.jpg"/>
+
+
+
+[欢迎访问我的CSDN博客](http://blog.csdn.net/zz7zz7zz)<br />
+
+
 
